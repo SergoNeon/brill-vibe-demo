@@ -1,15 +1,26 @@
-# BRILL VIBE — public GitHub Pages preview
+# BRILL VIBE — multilingual interactive preview (GitHub Pages)
 
-**This repository contains an interactive, public *frontend-only preview* for the independent 18+ social platform BRILL VIBE.**
+Public test site: https://sergoneon.github.io/brill-vibe-demo/
 
-Live URL after GitHub Pages deployment: https://sergoneon.github.io/brill-vibe-demo/
+## Global-first language policy
 
-**What works in the preview:** responsive mobile/desktop UI, language switching RU/EN/HE with RTL, room browsing, search and language filter, new local rooms, local messages, demo-profile editing, report form, persistent state in this browser's localStorage.
+- Automatic language detection from `navigator.languages`; the user's manual choice is remembered locally.
+- Searchable selector currently lists **188 language and regional-locale options** using native and English display names.
+- **13 complete UI language packs:** Russian, English, Hebrew, Spanish, French, German, Portuguese, Arabic, Hindi, Simplified Chinese, Japanese, Turkish and Ukrainian.
+- Correct right-to-left layout for RTL languages (Hebrew and Arabic are translated; other RTL locale choices use a fallback).
+- Other offered languages are selectable but **not translated yet**; the app displays an explicit English-language fallback notice, never a false claim of full translation.
+- Community room language can be selected from the language registry even if the interface translation is not ready.
+- UI language and user-generated chat content are separate. No automatic message translation is implemented in the static preview.
+- Add translations as maintained language packs with GitHub checks; no third-party application service is required to display the static preview.
 
-**Important limitations:** this demo intentionally has **no backend, no real accounts, no cross-device synchronization, no real moderators, no actual voice/video communication or payments**. Changes are stored only in the visitor's browser. It must not be presented as a real working social service.
+## What can be tested
 
-Production Next.js API and PostgreSQL code live separately in a private repository: [SergoNeon/brill-vibe](https://github.com/SergoNeon/brill-vibe).
+Responsive mobile and desktop layout, navigation, room discovery and search, creating local rooms, sending local messages, editing a demo profile, local report form, and persistence in browser localStorage. The app makes clear that actions are local.
 
-Publishing is handled entirely by GitHub Actions and GitHub Pages. No third-party application host is needed for the static preview.
+## Not part of this static preview
+
+There is no backend API here, no real accounts, shared chat, cross-device synchronization, actual moderation, voice/video service, payments or automatic cross-language chat translation. The backend application is kept in the private GitHub repository [SergoNeon/brill-vibe](https://github.com/SergoNeon/brill-vibe).
+
+Static GitHub Pages deployment runs from GitHub Actions on each commit. CI checks JavaScript syntax and language-package completeness before publishing.
 
 Developed by Brill Team Project.
