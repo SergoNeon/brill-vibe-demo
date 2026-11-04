@@ -1,0 +1,51 @@
+"use strict";
+const { chromium }=require("playwright");
+const http=require("node:http");
+const fs=require("node:fs");
+const path=require("node:path");
+const assert=require("node:assert/strict");
+const root=path.resolve(__dirname,".."),contentTypes={".html":"text/html",".css":"text/css",".js":"text/javascript",".svg":"image/svg+xml"};
+const server=http.createServer((req,res)=>{let pathname=decodeURIComponent((req.url||"/").split("?")[0]);if(pathname==="/")pathname="/index.html";const file=path.resolve(root,"."+pathname);if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return}fs.readFile(file,(e,b)=>{if(e){res.writeHead(404).end();return}res.writeHead(200,{"Content-Type":contentTypes[path.extname(file)]||"text/plain","Cache-Control":"no-store"}).end(b)})});
+async function run(){
+  await new Promise(r=>server.listen(0,"127.0.0.1",r));
+  const port=server.address().port,origin="http://127.0.0.1:"+port;
+  const browser=await chromium.launch({headless:true});
+  for(const device of [{name:"mobile",width:390,height:844},{name:"desktop",width:1440,height:900}]){
+    const context=await browser.newContext({viewport:{width:device.width,height:device.height},isMobile:device.name==="mobile",deviceScaleFactor:1,hasTouch:device.name==="mobile"});
+    const page=await context.newPage(),errors=[];
+    page.on("pageerror",e=>errors.push(e.message));
+    await page.goto(origin,{waitUntil:"networkidle"});
+    await page.locator("#view-home.active").waitFor();
+    await page.screenshot({path:"artifacts/"+device.name+"-home.png",fullPage:true});
+    const rooms=page.locator(".bottomNav [data-go=rooms]");
+    if(device.name==="mobile")await rooms.click();else await page.locator(".rail [data-go=rooms]").click();
+    await page.locator("#view-rooms.active").waitFor();
+    assert((await page.locator("#allRooms .roomCard").count())>=6,"room cards missing");
+    await page.locator("#allRooms .roomCard").first().click();
+    await page.locator("#chatScreen.visible").waitFor();
+    await page.locator("#chatInput").fill("Hello from smoke test");
+    await page.locator("#chatForm button[type=submit]").click();
+    await page.locator(".bubbleText").filter({hasText:"Hello from smoke test"}).waitFor();
+    if(device.name==="mobile")await page.locator(".bottomNav [data-go=people]").click();else await page.locator(".rail [data-go=people]").click();
+    assert((await page.locator("#peopleGrid .personCard").count())===8,"profiles missing");
+    await page.locator("#peopleGrid .followBtn").first().click();
+    await page.locator("#peopleGrid .followBtn.isFollowing").first().waitFor();
+    await page.locator("#langButton").click();
+    await page.locator("#languageDialog[open]").waitFor();
+    await page.locator("#languageSearch").fill("français");
+    await page.locator("#languageList .langOption").first().click();
+    assert(await page.locator("html").getAttribute("lang")==="fr","language change failed");
+    await page.locator("#view-people.active").waitFor();
+    if(device.name==="mobile")await page.locator(".bottomNav [data-go=games]").click();else await page.locator(".rail [data-go=games]").click();
+    await page.locator("#startQuiz").click();
+    await page.locator(".quizChoices button").first().click();
+    await page.locator(".quizPanel button.btnPrimary").waitFor();
+    await page.screenshot({path:"artifacts/"+device.name+"-games.png",fullPage:true});
+    assert.deepEqual(errors,[],"browser runtime errors");
+    await context.close();
+    console.log(device.name+" PASS",{"rooms":6,"profiles":8,"language":"fr","quiz":true,"messages":true});
+  }
+  await browser.close();
+}
+fs.mkdirSync(path.join(root,"artifacts"),{recursive:true});
+run().then(()=>server.close(),e=>{console.error(e);server.close();process.exitCode=1});
