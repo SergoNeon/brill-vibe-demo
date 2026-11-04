@@ -23,6 +23,11 @@ jobs:
         run: |
           node --check app.js
           node --check language-packs.js
+          node --check vibe-locales.js
+          node --check vibe-app.js
+          grep -q 'id="view-home"' index.html
+          grep -q 'id="view-chats"' index.html
+          grep -q 'vibe-app.js' index.html
           node -e 'const fs=require("node:fs");const vm=require("node:vm");const win={};vm.runInNewContext(fs.readFileSync("language-packs.js","utf8"),{window:win});const m=win.BRILL_I18N;if(!m||Object.values(m.packs).some(p=>Object.keys(p).length!==m.keys.length))process.exit(1);console.log(Object.keys(m.packs).length+" new complete language packs, "+m.codes.length+" locale options");'
           grep -q 'id="languageDialog"' index.html
       - name: Configure Pages
