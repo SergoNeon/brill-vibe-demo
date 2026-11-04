@@ -19,6 +19,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Validate JavaScript and locale packs
+        run: |
+          node --check app.js
+          node --check language-packs.js
+          node -e 'const fs=require("node:fs");const vm=require("node:vm");const win={};vm.runInNewContext(fs.readFileSync("language-packs.js","utf8"),{window:win});const m=win.BRILL_I18N;if(!m||Object.values(m.packs).some(p=>Object.keys(p).length!==m.keys.length))process.exit(1);console.log(Object.keys(m.packs).length+" new complete language packs, "+m.codes.length+" locale options");'
+          grep -q 'id="languageDialog"' index.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
