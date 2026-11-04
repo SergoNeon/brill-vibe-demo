@@ -12,24 +12,24 @@ async function run(){
   const browser=await chromium.launch({headless:true});
   for(const device of [{name:"mobile",width:390,height:844},{name:"desktop",width:1440,height:900}]){
     const context=await browser.newContext({viewport:{width:device.width,height:device.height},isMobile:device.name==="mobile",deviceScaleFactor:1,hasTouch:device.name==="mobile"});
-    const page=await context.newPage(),errors=[];
+    const page=await context.newPage(),errors=[];page.setDefaultTimeout(12000);page.setDefaultNavigationTimeout(15000);console.log("START",device.name);
     page.on("pageerror",e=>errors.push(e.message));
-    await page.goto(origin,{waitUntil:"networkidle"});
+    await page.goto(origin,{waitUntil:"domcontentloaded"});console.log("LOADED",device.name);
     await page.locator("#view-home.active").waitFor();
-    await page.screenshot({path:"artifacts/"+device.name+"-home.png",fullPage:true});
+    await page.screenshot({path:"artifacts/"+device.name+"-home.png",fullPage:true,animations:"disabled"});console.log("HOME OK",device.name);
     const rooms=page.locator(".bottomNav [data-go=rooms]");
     if(device.name==="mobile")await rooms.click();else await page.locator(".rail [data-go=rooms]").click();
     await page.locator("#view-rooms.active").waitFor();
     assert((await page.locator("#allRooms .roomCard").count())>=6,"room cards missing");
     await page.locator("#allRooms .roomCard").first().click();
-    await page.locator("#chatScreen.visible").waitFor();
+    await page.locator("#chatScreen.visible").waitFor();console.log("CHAT OK",device.name);
     await page.locator("#chatInput").fill("Hello from smoke test");
     await page.locator("#chatForm button[type=submit]").click();
     await page.locator(".bubbleText").filter({hasText:"Hello from smoke test"}).waitFor();
     if(device.name==="mobile")await page.locator(".bottomNav [data-go=people]").click();else await page.locator(".rail [data-go=people]").click();
     assert((await page.locator("#peopleGrid .personCard").count())===8,"profiles missing");
     await page.locator("#peopleGrid .followBtn").first().click();
-    await page.locator("#peopleGrid .followBtn.isFollowing").first().waitFor();
+    await page.locator("#peopleGrid .followBtn.isFollowing").first().waitFor();console.log("FOLLOW OK",device.name);
     await page.locator("#langButton").click();
     await page.locator("#languageDialog[open]").waitFor();
     await page.locator("#languageSearch").fill("français");
@@ -39,7 +39,7 @@ async function run(){
     if(device.name==="mobile")await page.locator(".bottomNav [data-go=games]").click();else await page.locator(".rail [data-go=games]").click();
     await page.locator("#startQuiz").click();
     await page.locator(".quizChoices button").first().click();
-    await page.locator(".quizPanel button.btnPrimary").waitFor();
+    await page.locator(".quizPanel button.btnPrimary").waitFor();console.log("QUIZ OK",device.name);
     await page.screenshot({path:"artifacts/"+device.name+"-games.png",fullPage:true});
     assert.deepEqual(errors,[],"browser runtime errors");
     await context.close();
