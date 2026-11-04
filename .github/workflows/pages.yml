@@ -25,6 +25,7 @@ jobs:
           node --check language-packs.js
           node --check vibe-locales.js
           node --check vibe-app.js
+          node --check vibe-portraits.js
           grep -q 'id="view-home"' index.html
           grep -q 'id="view-chats"' index.html
           grep -q 'vibe-app.js' index.html
