@@ -9,9 +9,9 @@
 
 /* International language selection: single, keyboard-accessible locale picker. */
 [hidden]{display:none!important}
-.languageTrigger{border:1px solid #554c55;background:#211e22;color:var(--text);border-radius:7px;min-height:42px;max-width:260px;padding:7px 11px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+.lang .languageTrigger{border:1px solid #554c55;background:#211e22;color:var(--text);border-radius:7px;min-height:42px;max-width:260px;padding:7px 11px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
 .languageTrigger:hover{border-color:var(--gold)}
-#langCurrentLabel{max-width:145px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lang #langCurrentLabel{max-width:145px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .langGlobe{color:var(--gold);font-size:20px;line-height:1}
 .chevron{font-size:15px;color:var(--dim)}
 .languageFallbackNotice{max-width:1500px;margin:0 auto;width:100%;border-bottom:1px solid #6d573f;background:#342c22;color:#eed5a5;padding:11px clamp(20px,5vw,84px);font-size:12px}
@@ -33,4 +33,4 @@
 .languageNames small{font-size:11px;color:var(--dim)}
 .languageState{font-size:10px;white-space:nowrap;color:#aaa4a5;flex-shrink:0}
 .languageState.available{color:var(--gold)}
-@media(max-width:700px){.languageTrigger{min-height:35px;padding:5px 8px;gap:5px;max-width:115px;font-size:11px}.langGlobe{font-size:16px}.chevron{font-size:12px}#langCurrentLabel{max-width:66px}.languagePanel{padding:23px 15px;max-height:85dvh}.languagePanel>h2{font-size:24px}.languageList{max-height:53dvh}.languageOption{padding:9px 8px}.languageState{font-size:9px}.languageFallbackNotice{padding:10px 19px;font-size:11px}}
+@media(max-width:700px){.lang .languageTrigger{min-height:35px;padding:5px 8px;gap:5px;max-width:115px;font-size:11px}.langGlobe{font-size:16px}.chevron{font-size:12px}.lang #langCurrentLabel{max-width:66px}.languagePanel{padding:23px 15px;max-height:85dvh}.languagePanel>h2{font-size:24px}.languageList{max-height:53dvh}.languageOption{padding:9px 8px}.languageState{font-size:9px}.languageFallbackNotice{padding:10px 19px;font-size:11px}}
