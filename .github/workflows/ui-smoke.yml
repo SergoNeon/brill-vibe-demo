@@ -1,0 +1,30 @@
+name: Verify BRILL VIBE mobile and desktop UI
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0
+          npx playwright install --with-deps chromium
+      - name: Test mobile and desktop flows
+        run: node tests/ui-smoke.cjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brill-vibe-mobile-desktop-screenshots
+          path: artifacts/
+          if-no-files-found: ignore
+          retention-days: 14
