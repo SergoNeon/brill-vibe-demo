@@ -1,1 +1,27 @@
 .heroDashboard{background-image:linear-gradient(90deg,#1b0e17ee,#1b0e1744),url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30');background-position:center;background-size:cover}
+/* Real photography with clear, readable information overlays. */
+:root{--red:#f4475d;--gold:#edc387;--line:#382e39;--muted:#b8aab6}
+body{background:#0e0b10}
+.rail{background:#171018}
+.topbar{background:#120e15ed;border-bottom-color:#42323c}
+.heroDashboard{position:relative;min-height:310px;align-items:flex-end;border-radius:24px;padding:34px 36px;background-image:linear-gradient(90deg,#160a17f2 0%,#260e1bb8 49%,#140c1855 100%),url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85");background-position:center;background-size:cover;border-color:#844959}
+.heroVisual{display:none}
+.heroText{max-width:570px}.heroText h1{font-size:clamp(35px,4.3vw,58px);letter-spacing:-2px;line-height:1.09;text-shadow:0 2px 24px #0008}
+.heroText p{color:#f1dee5;text-shadow:0 2px 16px #0008}
+.heroTop{color:#ffd2a0}
+.sectionTitle{font-size:23px;letter-spacing:-.8px}
+.roomCard{border-color:#49333e;border-radius:20px;background:#1a161d;box-shadow:0 6px 24px #0003}
+.roomCover{height:176px;background-size:cover!important;background-position:center!important}
+.roomCover:before{display:none!important}
+.roomCover:after{background:linear-gradient(180deg,#160d1a28 0%,#180d1c11 45%,#140c18d9 100%)}
+.roomCover.music{background-image:url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=850&q=82")}
+.roomCover.games{background-image:url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=850&q=82")}
+.roomCover.social{background-image:url("https://images.unsplash.com/photo-1527525443983-6e60c75fff46?auto=format&fit=crop&w=850&q=82")}
+.roomCover.travel{background-image:url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=850&q=82")}
+.roomCover[data-cover="friends"]{background-image:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=850&q=82")}
+.roomCover[data-cover="hebrew"]{background-image:url("https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=850&q=82")}
+.coverPill{background:#120d16b0;border-color:#ffffff55;z-index:3}
+.coverCircle{width:51px;height:51px;bottom:-18px;background:linear-gradient(145deg,#d65e87,#733153);border:3px solid #1a161d;z-index:3}
+.roomInfo{padding:29px 15px 12px}.roomInfo h3{font-size:17px}.roomInfo p{color:#bdb2bd}
+.roomCardFooter{border-color:#3a2e38}
+@media(max-width:640px){.heroDashboard{min-height:248px;padding:23px 20px;border-radius:19px}.heroText{max-width:86%}.heroText h1{font-size:33px;letter-spacing:-1.35px}.heroText p{font-size:11px;max-width:255px}.roomCover{height:137px}.coverCircle{width:43px;height:43px;bottom:-15px}.roomInfo{padding:25px 10px 10px}.roomInfo h3{font-size:13px}.sectionTitle{font-size:20px}}
