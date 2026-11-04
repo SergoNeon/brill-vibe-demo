@@ -6,3 +6,31 @@
 @media(max-width:950px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.heroArt{right:-6%;opacity:.65}.heroCopy{width:73%}}
 @media(max-width:700px){.header{height:64px;padding:0 18px;gap:7px}.logoGlyph{width:33px;height:33px;font-size:23px}.identity{gap:7px}.identityWord{font-size:15px}.desktopNav{display:none}.headRight{gap:5px}.lang button{font-size:10px;padding:5px 4px}.accountLink{font-size:11px;padding:8px;max-width:95px;overflow:hidden;text-overflow:ellipsis}.accountLink span{display:none}.demoBar{flex-wrap:wrap;padding:9px 19px;gap:7px;font-size:10px}.demoBar strong{font-size:9px}.demoBar>span:last-child{width:100%;padding-left:15px}.hero{min-height:570px;align-items:flex-start;padding:39px 20px 64px}.heroCopy{width:100%}.eyebrow{font-size:9px;letter-spacing:1.5px}.hugeType{font-size:clamp(95px,20vw,135px);margin:88px 0 32px}.hugeType>span{color:#b5afb6}.hero h1{font-size:24px;margin-top:8px}.hero p{max-width:355px;font-size:13px}.heroActions{margin-top:25px;gap:19px}.heroArt{right:-29%;top:8%;height:75%;width:99%;opacity:.36}.outerRing{width:330px}.ball.red{width:175px;height:175px}.ball.gold{width:92px;height:92px}.ball.violet{width:60px;height:60px}.centerGlyph{font-size:109px}.heroFoot{font-size:8px;bottom:13px;right:20px}.content{padding:46px 20px 110px}.sectionHeader{align-items:flex-start;gap:10px;flex-wrap:wrap}.sectionHeader h1,.sectionHeader h2{font-size:31px}.sectionHeader p{font-size:12px}.textLink{font-size:12px}.cards{grid-template-columns:1fr;gap:12px}.roomCard{padding:20px;min-height:211px}.featureStrip{grid-template-columns:1fr;padding:16px 20px 104px;gap:23px}.featureStrip>div{padding-top:15px}.roomsView{padding-top:50px}.filters{flex-wrap:wrap}.searchBox{min-width:100%}.filters select{max-width:unset;width:100%}.profilePanel{padding:22px;gap:15px;flex-wrap:wrap}.bigAvatar{width:66px;height:66px}.profileText h1{font-size:24px}.profilePanel .outline{width:100%}.profileExtra{grid-template-columns:1fr;gap:10px}.profileExtra>div{padding:16px}.footer{flex-direction:column;align-items:flex-start;gap:3px;padding:23px 20px 98px}.mobileNav{position:fixed;bottom:0;left:0;right:0;z-index:70;display:flex;justify-content:space-around;align-items:center;background:#19181de8;border-top:1px solid #403840;padding:8px 7px max(10px,env(safe-area-inset-bottom));backdrop-filter:blur(14px)}.mobileNav button{border:0;background:transparent;display:flex;flex-direction:column;gap:1px;color:#a09aa4;align-items:center;width:30%;padding:3px}.mobileNav button.on{color:var(--gold)}.mobileNav button span{font-size:23px;line-height:1}.mobileNav button small{font-size:10px}.chatView{min-height:calc(100dvh - 150px)}.chatHeader{padding:12px 14px;gap:9px}.chatHeader .backBtn span{display:none}.chatHeader .roomIcon{width:38px;height:38px}.roomHeading h2{font-size:15px}.roomHeading p{max-width:160px}.chatBody{padding:20px 15px}.chatComposer{padding:12px 14px max(16px,env(safe-area-inset-bottom))}.modalPanel{padding:28px 22px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* International language selection: single, keyboard-accessible locale picker. */
+[hidden]{display:none!important}
+.languageTrigger{border:1px solid #554c55;background:#211e22;color:var(--text);border-radius:7px;min-height:42px;max-width:260px;padding:7px 11px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+.languageTrigger:hover{border-color:var(--gold)}
+#langCurrentLabel{max-width:145px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.langGlobe{color:var(--gold);font-size:20px;line-height:1}
+.chevron{font-size:15px;color:var(--dim)}
+.languageFallbackNotice{max-width:1500px;margin:0 auto;width:100%;border-bottom:1px solid #6d573f;background:#342c22;color:#eed5a5;padding:11px clamp(20px,5vw,84px);font-size:12px}
+#languageDialog{width:min(525px,calc(100% - 24px));max-height:min(85dvh,760px)}
+.languagePanel{padding:30px;position:relative;background:#1d1b20;border:1px solid #594c53;border-radius:11px;max-height:min(85dvh,760px);display:flex;flex-direction:column}
+.languagePanel>h2{font-size:27px;letter-spacing:-.8px;line-height:1.2;margin:22px 0 4px}
+.languagePanel>p{font-size:12px;color:var(--dim);margin:0 0 19px}
+.languageSearchBox{display:flex;align-items:center;gap:12px;border:1px solid #5b5159;background:#29262b;color:var(--dim);border-radius:7px;height:48px;padding:0 13px}
+.languageSearchBox span{font-size:27px}
+.languageSearchBox input{border:0;outline:0;flex:1;min-width:0;background:none;color:var(--text);font-size:14px}
+.languageListMeta{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:11px;padding:15px 2px 11px}
+.languageListMeta span:last-child{color:var(--gold)}
+.languageList{overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);padding:7px 0 2px;min-height:0;max-height:420px;scrollbar-gutter:stable}
+.languageOption{border:1px solid transparent;border-radius:7px;min-height:55px;padding:10px 12px;background:transparent;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:start}
+.languageOption:hover,.languageOption:focus-visible{background:#2d292f;border-color:#574c55}
+.languageOption.selected{background:#372c32;border-color:#8f6c63}
+.languageNames{min-width:0;display:flex;flex-direction:column;gap:1px}
+.languageNames strong{font-size:14px;font-weight:700}
+.languageNames small{font-size:11px;color:var(--dim)}
+.languageState{font-size:10px;white-space:nowrap;color:#aaa4a5;flex-shrink:0}
+.languageState.available{color:var(--gold)}
+@media(max-width:700px){.languageTrigger{min-height:35px;padding:5px 8px;gap:5px;max-width:115px;font-size:11px}.langGlobe{font-size:16px}.chevron{font-size:12px}#langCurrentLabel{max-width:66px}.languagePanel{padding:23px 15px;max-height:85dvh}.languagePanel>h2{font-size:24px}.languageList{max-height:53dvh}.languageOption{padding:9px 8px}.languageState{font-size:9px}.languageFallbackNotice{padding:10px 19px;font-size:11px}}
