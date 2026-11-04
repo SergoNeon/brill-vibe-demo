@@ -27,7 +27,7 @@ function langStrings(){const base=lang.split("-")[0];return {
   ja:{title:"言語を選択",placeholder:"言語名またはコードで検索",ready:"翻訳済みの画面",pending:"翻訳が完成するまで英語で表示します",translated:"翻訳済み",fallback:"英語で表示",count:"言語の翻訳が完成"},
   tr:{title:"Dilini seç",placeholder:"Dil adı veya kod ara",ready:"Arayüz tamamen çevrildi",pending:"Çeviri hazır olana kadar İngilizce gösterilir",translated:"Çevrildi",fallback:"İngilizce gösterilir",count:"arayüz çevirisi hazır"},
   uk:{title:"Оберіть мову",placeholder:"Пошук мови або коду",ready:"Повний переклад інтерфейсу",pending:"Поки що інтерфейс відображається англійською",translated:"Перекладено",fallback:"Англійська тимчасово",count:"перекладів готово"}
-}[lang]||({ru:null,en:null}[base]||null)||({ru:translations.ru,en:translations.en}[base]&&{title:base==="ru"?"Выберите язык":"Choose your language",placeholder:base==="ru"?"Поиск языков":"Search languages",ready:"Full interface translation",pending:"English is displayed until the translation is available",translated:"Translated",fallback:"English fallback",count:"interface translations ready"})||{title:"Choose your language",placeholder:"Search languages",ready:"Full interface translation",pending:"English interface is displayed until translation is available",translated:"Translated",fallback:"English fallback",count:"interface translations ready"});
+}[base]||{title:"Choose your language",placeholder:"Search languages",ready:"Full interface translation",pending:"English interface is displayed until translation is available",translated:"Translated",fallback:"English fallback",count:"interface translations ready"};
 }
 function suggestedLocale(){
   try{const selected=localStorage.getItem(LANGUAGE_KEY);if(selected&&localeCodes.includes(selected))return selected;}catch{}
